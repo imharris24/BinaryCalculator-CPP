@@ -16,43 +16,7 @@ public:
 		result = "\0";
 		option = '\0';
 	}
-	void run() {
-		while (true) {
-			system("cls");
-			cout << "BINARY CALCULATOR\n";
-			cout << "1. Addition\n";
-			// cout << "2. Subtraction\n";
-			// cout << "3. Multiplication\n";
-			// cout << "4. Division\n";
-			// cout << "5. Convert Binary to Decimal\n";
-			cout << "Option: ";
-			option = _getche();
-			switch (option) {
-			case '1':
-				cout << "\n\nEnter Number 1: ";
-				getline(cin, numberOne);
-				while (!isBinary(numberOne)) {
-					cout << "\nError: Number should only contain 0s and 1s\n";
-					cout << "Enter Number 1 again: ";
-					getline(cin, numberOne);
-				}
-				cout << "Enter Number 2: ";
-				getline(cin, numberTwo);
-				while (!isBinary(numberTwo)) {
-					cout << "\nError: Number should only contain 0s and 1s\n";
-					cout << "Enter Number 2 again: ";
-					getline(cin, numberTwo);
-				}
-				result = binaryAddition(numberOne, numberTwo);
-				cout << "Result: " << result << '\n';
-				cout << "\nPress any key to return...";
-				_getch();
-				break;
-			default:
-				break;
-			}
-		}
-	}
+	void run();
 };
 bool binaryCalculator::isBinary(string number) {
 	bool binary = true;
@@ -140,6 +104,43 @@ string binaryCalculator::binaryAddition(string numberOne, string numberTwo) {
 		carry = 0;
 	}
 	return result;
+}
+void binaryCalculator::run() {
+	while (true) {
+		system("cls");
+		cout << "BINARY CALCULATOR\n";
+		cout << "1. Addition\n";
+		// cout << "2. Subtraction\n";
+		// cout << "3. Multiplication\n";
+		// cout << "4. Division\n";
+		// cout << "5. Convert Binary to Decimal\n";
+		cout << "Option: ";
+		option = _getche();
+		switch (option) {
+		case '1':
+			cout << "\n\nEnter Number 1: ";
+			getline(cin, numberOne);
+			while (!isBinary(numberOne)) {
+				cout << "\nError: Number should only contain 0s and 1s\n";
+				cout << "Enter Number 1 again: ";
+				getline(cin, numberOne);
+			}
+			cout << "Enter Number 2: ";
+			getline(cin, numberTwo);
+			while (!isBinary(numberTwo)) {
+				cout << "\nError: Number should only contain 0s and 1s\n";
+				cout << "Enter Number 2 again: ";
+				getline(cin, numberTwo);
+			}
+			result = binaryAddition(numberOne, numberTwo);
+			cout << "Result: " << result << '\n';
+			cout << "\nPress any key to return...";
+			_getch();
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 int main() {
