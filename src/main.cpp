@@ -29,7 +29,6 @@ public:
 			option = _getche();
 			switch (option) {
 			case '1':
-				// input number 1
 				cout << "\n\nEnter Number 1: ";
 				getline(cin, numberOne);
 				while (!isBinary(numberOne)) {
@@ -37,7 +36,6 @@ public:
 					cout << "Enter Number 1 again: ";
 					getline(cin, numberOne);
 				}
-				// input number 2
 				cout << "Enter Number 2: ";
 				getline(cin, numberTwo);
 				while (!isBinary(numberTwo)) {
@@ -45,7 +43,6 @@ public:
 					cout << "Enter Number 2 again: ";
 					getline(cin, numberTwo);
 				}
-				// compute and print result;
 				result = binaryAddition(numberOne, numberTwo);
 				cout << "Result: " << result << '\n';
 				cout << "\nPress any key to return...";
