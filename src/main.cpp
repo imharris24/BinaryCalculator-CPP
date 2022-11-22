@@ -1,12 +1,39 @@
 #include<iostream>
+#include<string>
+#include<conio.h>
 using namespace std;
 
 class binaryCalculator {
 private:
+	string numberOne, numberTwo, result;
+	char option;
 	bool isBinary(string number);
-
-public:
 	string binaryAddition(string numberOne, string numberTwo);
+public:
+	binaryCalculator() {
+		numberOne = "\0";
+		numberTwo = "\0";
+		result = "\0";
+		option = '\0';
+	}
+	void run() {
+		while (true) {
+			system("cls");
+			cout << "BINARY CALCULATOR\n";
+			cout << "1. Addition\n";
+			cout << "2. Subtraction\n";
+			cout << "3. Multiplication\n";
+			cout << "4. Division\n";
+			cout << "Option: ";
+			option = _getche();
+			switch (option) {
+			case '1':
+				break;
+			default:
+				break;
+			}
+		}
+	}
 };
 bool binaryCalculator::isBinary(string number) {
 	bool binary = true;
@@ -99,6 +126,7 @@ string binaryCalculator::binaryAddition(string numberOne, string numberTwo) {
 
 int main() {
 	binaryCalculator calc;
-
+	calc.run();
+	
 	return 0;
 }
