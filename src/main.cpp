@@ -6,9 +6,9 @@ using namespace std;
 class binaryCalculator {
 private:
 	string numberOne, numberTwo, result;
-	char option;
-	bool isBinary(string number);
-	string binaryAddition(string numberOne, string numberTwo);
+	char option; 
+	bool isBinary(string number); // function to check whether a number is binary or not
+	string binaryAddition(string numberOne, string numberTwo); // function that add two binary numbers and return result
 public:
 	binaryCalculator() {
 		numberOne = "\0";
@@ -21,13 +21,35 @@ public:
 			system("cls");
 			cout << "BINARY CALCULATOR\n";
 			cout << "1. Addition\n";
-			cout << "2. Subtraction\n";
-			cout << "3. Multiplication\n";
-			cout << "4. Division\n";
+			// cout << "2. Subtraction\n";
+			// cout << "3. Multiplication\n";
+			// cout << "4. Division\n";
+			// cout << "5. Convert Binary to Decimal\n";
 			cout << "Option: ";
 			option = _getche();
 			switch (option) {
 			case '1':
+				// input number 1
+				cout << "\n\nEnter Number 1: ";
+				getline(cin, numberOne);
+				while (!isBinary(numberOne)) {
+					cout << "\nError: Number should only contain 0s and 1s\n";
+					cout << "Enter Number 1 again: ";
+					getline(cin, numberOne);
+				}
+				// input number 2
+				cout << "Enter Number 2: ";
+				getline(cin, numberTwo);
+				while (!isBinary(numberTwo)) {
+					cout << "\nError: Number should only contain 0s and 1s\n";
+					cout << "Enter Number 2 again: ";
+					getline(cin, numberTwo);
+				}
+				// compute and print result;
+				result = binaryAddition(numberOne, numberTwo);
+				cout << "Result: " << result << '\n';
+				cout << "\nPress any key to return...";
+				_getch();
 				break;
 			default:
 				break;
@@ -122,7 +144,6 @@ string binaryCalculator::binaryAddition(string numberOne, string numberTwo) {
 	}
 	return result;
 }
-
 
 int main() {
 	binaryCalculator calc;
