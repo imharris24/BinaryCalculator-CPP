@@ -8,15 +8,16 @@ private:
 	string numberOne, numberTwo, result;
 	char option; 
 	bool isBinary(string number); // function to check whether a number is binary or not
-	string binaryAddition(string numberOne, string numberTwo); // function that add two binary numbers and return result
+	string addition(string numberOne, string numberTwo); // function that add two binary numbers and return result
 public:
+	string twosComplement(string number); // function that returns 2's complement of a number
 	binaryCalculator() {
 		numberOne = "\0";
 		numberTwo = "\0";
 		result = "\0";
 		option = '\0';
 	}
-	void run();
+	void app();
 };
 bool binaryCalculator::isBinary(string number) {
 	bool binary = true;
@@ -28,7 +29,7 @@ bool binaryCalculator::isBinary(string number) {
 	}
 	return binary;
 }
-string binaryCalculator::binaryAddition(string numberOne, string numberTwo) {
+string binaryCalculator::addition(string numberOne, string numberTwo) {
 	string result = "\0";
 	int i = 0, j = 0;
 	bool carry = 0;
@@ -105,15 +106,26 @@ string binaryCalculator::binaryAddition(string numberOne, string numberTwo) {
 	}
 	return result;
 }
-void binaryCalculator::run() {
+string binaryCalculator::twosComplement(string number) {
+	string complement = "\0";
+	for (int i = 0; i < number.length(); i++) {
+		if (number[i] == '1') {
+			number[i] = '0';
+		}
+		else {
+			number[i] = '1';
+		}
+	}
+	complement = addition(number, "1");
+	return complement;
+}
+void binaryCalculator::app() {
 	while (true) {
 		system("cls");
 		cout << "BINARY CALCULATOR\n";
 		cout << "1. Addition\n";
 		// cout << "2. Subtraction\n";
-		// cout << "3. Multiplication\n";
-		// cout << "4. Division\n";
-		// cout << "5. Convert Binary to Decimal\n";
+		// cout << "3. Convert Binary to Decimal\n";
 		cout << "Option: ";
 		option = _getche();
 		switch (option) {
@@ -132,7 +144,7 @@ void binaryCalculator::run() {
 				cout << "Enter Number 2 again: ";
 				getline(cin, numberTwo);
 			}
-			result = binaryAddition(numberOne, numberTwo);
+			result = addition(numberOne, numberTwo);
 			cout << "Result: " << result << '\n';
 			cout << "\nPress any key to return...";
 			_getch();
@@ -145,7 +157,12 @@ void binaryCalculator::run() {
 
 int main() {
 	binaryCalculator calc;
-	calc.run();
+	//calc.app();
+
+	cout << calc.twosComplement("0000") << endl;
+	cout << calc.twosComplement("1010") << endl;
+	cout << calc.twosComplement("0101") << endl;
+	cout << calc.twosComplement("1111") << endl;
 	
 	return 0;
 }
