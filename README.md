@@ -7,13 +7,9 @@ This Calculator is written in C++ using basic concepts of object oriented progra
 
 ## Screenshots
 
-![App Screenshot](https://raw.githubusercontent.com/imharris24/Snake-CPP/main/screenshot/scr01.png?token=GHSAT0AAAAAABZQSA2C5SXNETHS7VAJ2O2CY3J5O6A)
+![App Screenshot](https://raw.githubusercontent.com/imharris24/BinaryCalculator-CPP/main/screenshot/screenshot0.png?token=GHSAT0AAAAAABZQSA2C5SXNETHS7VAJ2O2CY3J5O6A)
 
-![App Screenshot](https://raw.githubusercontent.com/imharris24/Snake-CPP/main/screenshot/scr02.png?token=GHSAT0AAAAAABZQSA2DTAZJ6GSS4HT3MI6CY3J5PAA)
-
-![App Screenshot](https://raw.githubusercontent.com/imharris24/Snake-CPP/main/screenshot/scr03.png?token=GHSAT0AAAAAABZQSA2C5SXNETHS7VAJ2O2CY3J5O6A)
-
-![App Screenshot](https://raw.githubusercontent.com/imharris24/Snake-CPP/main/screenshot/scr04.png?token=GHSAT0AAAAAABZQSA2DTAZJ6GSS4HT3MI6CY3J5PAA)
+![App Screenshot](https://raw.githubusercontent.com/imharris24/BinaryCalculator-CPP/main/screenshot/screenshot1.png?token=GHSAT0AAAAAABZQSA2DTAZJ6GSS4HT3MI6CY3J5PAA)
 
 ## Author
 
