@@ -9,9 +9,11 @@ private:
 	bool isBinary(string number); // function to check whether a number is binary or not
 	string addition(string numberOne, string numberTwo); // function that adds two binary numbers and returns result
 	string twosComplement(string number); // function that returns 2's complement of a binary number
-public:
+	void takeCarry(string& number, int i); // function that takes carry from MSB
 	string subtraction(string numberOne, string numberTwo); // function that subtracts two binary numbers and returns result
-	long long int returnDecimal(string number); // function that returns decimal value of a binary nummber
+	int returnDecimal(string number); // function that returns decimal value of a binary nummber
+	void inputBinaryNumber(string& number); // function to input a binary number to a variable
+public:
 	void app();
 };
 bool binaryCalculator::isBinary(string number) {
@@ -114,6 +116,20 @@ string binaryCalculator::twosComplement(string number) {
 	complement = addition(number, "1");
 	return complement;
 }
+void binaryCalculator::takeCarry(string& number, int i) {
+	if (i == -1) {
+		return;
+	}
+	else if (number[i] == '1') {
+		number[i] = '0';
+		return;
+	}
+	else if (number[i] == '0') {
+		takeCarry(number, i - 1);
+		number[i] = '1';
+		return;
+	}
+}
 string binaryCalculator::subtraction(string numberOne, string numberTwo) {
 	string result = "\0";
 	int i = 0, j = 0;
@@ -128,13 +144,14 @@ string binaryCalculator::subtraction(string numberOne, string numberTwo) {
 			result = '0' + result;
 		}
 		else {
-			// carry condition
+			result = '1' + result;
+			takeCarry(numberOne, i-1);
 		}
 	}
 	return result;
 }
-long long int binaryCalculator::returnDecimal(string number) {
-	long long int decimalNumber = 0;
+int binaryCalculator::returnDecimal(string number) {
+	int decimalNumber = 0;
 	for (int i = number.length() - 1, j = 0; i >= 0; i--, j++) {
 		if (number[i] == '0') {
 			continue;
@@ -144,6 +161,14 @@ long long int binaryCalculator::returnDecimal(string number) {
 		}
 	}
 	return decimalNumber;
+}
+void binaryCalculator::inputBinaryNumber(string& number) {
+	getline(cin, number);
+	while (!isBinary(number)) {
+		cout << "\nError: Number should only contain 0s and 1s\n";
+		cout << "Enter Number again: ";
+		getline(cin, number);
+	}
 }
 void binaryCalculator::app() {
 	string numberOne = "\0", numberTwo = "\0", result = "0";
@@ -155,32 +180,39 @@ void binaryCalculator::app() {
 		option = '\0';
 		system("cls");
 		cout << "BINARY CALCULATOR\n";
-		cout << "1. Addition\n";
-		// cout << "2. Subtraction\n";
-		// cout << "3. Convert Binary to Decimal\n";
+		cout << "1. Binary Addition\n";
+		cout << "2. Binary Subtraction\n";
+		cout << "3. Convert Binary Number to Decimal Number\n";
 		cout << "Option: ";
 		option = _getche();
 		switch (option) {
 		case '1':
 			cout << "\n\nEnter Number 1: ";
-			getline(cin, numberOne);
-			while (!isBinary(numberOne)) {
-				cout << "\nError: Number should only contain 0s and 1s\n";
-				cout << "Enter Number 1 again: ";
-				getline(cin, numberOne);
-			}
+			inputBinaryNumber(numberOne);
 			cout << "Enter Number 2: ";
-			getline(cin, numberTwo);
-			while (!isBinary(numberTwo)) {
-				cout << "\nError: Number should only contain 0s and 1s\n";
-				cout << "Enter Number 2 again: ";
-				getline(cin, numberTwo);
-			}
+			inputBinaryNumber(numberTwo);
 			result = addition(numberOne, numberTwo);
 			cout << "Result: " << result << '\n';
 			cout << "\nPress any key to return...";
 			_getch();
 			break;
+		case '2':
+			cout << "\n\nEnter Number 1: ";
+			inputBinaryNumber(numberOne);
+			cout << "Enter Number 2: ";
+			inputBinaryNumber(numberTwo);
+			result = subtraction(numberOne, numberTwo);
+			cout << "Result: " << result << "\n";
+			cout << "\nPress any key to return...";
+			_getch();
+			break;
+		case '3':
+			cout << "\n\nEnter a number: ";
+			inputBinaryNumber(numberOne);
+			result = returnDecimal(numberOne);
+			cout << "Result: " << result << "\n";
+			cout << "\nPress any key to return...";
+			_getch();
 		default:
 			break;
 		}
@@ -189,10 +221,7 @@ void binaryCalculator::app() {
 
 int main() {
 	binaryCalculator calc;
-	//calc.app();
-	cout << calc.returnDecimal("1111") << endl;
-	cout << calc.returnDecimal("0100") << endl;
-	cout << calc.subtraction("1111", "0100") << endl;
-	cout << calc.returnDecimal(calc.subtraction("1111", "0100")) << endl;
+	calc.app();
+
 	return 0;
 }
