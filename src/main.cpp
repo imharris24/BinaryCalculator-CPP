@@ -8,7 +8,6 @@ class binaryCalculator {
 private:
 	bool isBinary(string number); // function to check whether a number is binary or not
 	string addition(string numberOne, string numberTwo); // function that adds two binary numbers and returns result
-	string twosComplement(string number); // function that returns 2's complement of a binary number
 	void takeCarry(string& number, int i); // function that takes carry from MSB
 	string subtraction(string numberOne, string numberTwo); // function that subtracts two binary numbers and returns result
 	long long int returnDecimal(string number); // function that returns decimal value of a binary nummber
@@ -103,19 +102,6 @@ string binaryCalculator::addition(string numberOne, string numberTwo) {
 	}
 	return result;
 }
-string binaryCalculator::twosComplement(string number) {
-	string complement = "\0";
-	for (int i = 0; i < number.length(); i++) {
-		if (number[i] == '1') {
-			number[i] = '0';
-		}
-		else {
-			number[i] = '1';
-		}
-	}
-	complement = addition(number, "1");
-	return complement;
-}
 void binaryCalculator::takeCarry(string& number, int i) {
 	if (i == -1) {
 		return;
@@ -171,12 +157,11 @@ void binaryCalculator::inputBinaryNumber(string& number) {
 	}
 }
 void binaryCalculator::app() {
-	string numberOne = "\0", numberTwo = "\0", result = "0";
+	string numberOne = "\0", numberTwo = "\0";
 	char option = '\0';
 	while (true) {
 		numberOne = "\0";
 		numberTwo = "\0";
-		result = "\0";
 		option = '\0';
 		system("cls");
 		cout << "BINARY CALCULATOR\n";
@@ -191,8 +176,7 @@ void binaryCalculator::app() {
 			inputBinaryNumber(numberOne);
 			cout << "Enter Number 2: ";
 			inputBinaryNumber(numberTwo);
-			result = addition(numberOne, numberTwo);
-			cout << "Result: " << result << '\n';
+			cout << "Result: " << addition(numberOne, numberTwo) << '\n';
 			cout << "\nPress any key to return...";
 			_getch();
 			break;
@@ -201,16 +185,14 @@ void binaryCalculator::app() {
 			inputBinaryNumber(numberOne);
 			cout << "Enter Number 2: ";
 			inputBinaryNumber(numberTwo);
-			result = subtraction(numberOne, numberTwo);
-			cout << "Result: " << result << "\n";
+			cout << "Result: " << subtraction(numberOne, numberTwo) << "\n";
 			cout << "\nPress any key to return...";
 			_getch();
 			break;
 		case '3':
 			cout << "\n\nEnter a number: ";
 			inputBinaryNumber(numberOne);
-			result = returnDecimal(numberOne);
-			cout << "Result: " << result << "\n";
+			cout << "Result: " << returnDecimal(numberOne) << "\n";
 			cout << "\nPress any key to return...";
 			_getch();
 		default:
