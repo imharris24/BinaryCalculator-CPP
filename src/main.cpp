@@ -11,7 +11,7 @@ private:
 	string twosComplement(string number); // function that returns 2's complement of a binary number
 	void takeCarry(string& number, int i); // function that takes carry from MSB
 	string subtraction(string numberOne, string numberTwo); // function that subtracts two binary numbers and returns result
-	int returnDecimal(string number); // function that returns decimal value of a binary nummber
+	long long int returnDecimal(string number); // function that returns decimal value of a binary nummber
 	void inputBinaryNumber(string& number); // function to input a binary number to a variable
 public:
 	void app();
@@ -150,8 +150,8 @@ string binaryCalculator::subtraction(string numberOne, string numberTwo) {
 	}
 	return result;
 }
-int binaryCalculator::returnDecimal(string number) {
-	int decimalNumber = 0;
+long long int binaryCalculator::returnDecimal(string number) {
+	long long int decimalNumber = 0;
 	for (int i = number.length() - 1, j = 0; i >= 0; i--, j++) {
 		if (number[i] == '0') {
 			continue;
