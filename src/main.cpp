@@ -11,7 +11,7 @@ private:
 	string twosComplement(string number); // function that returns 2's complement of a binary number
 public:
 	string subtraction(string numberOne, string numberTwo); // function that subtracts two binary numbers and returns result
-	long long int returnDecimal(string number);
+	long long int returnDecimal(string number); // function that returns decimal value of a binary nummber
 	void app();
 };
 bool binaryCalculator::isBinary(string number) {
