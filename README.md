@@ -1,4 +1,4 @@
-# Retro Snake Game C++
+# Binary Calculator C++
 
 This Calculator is written in C++ using basic concepts of object oriented programming. This calculator perfoms the following operation on binary numbers,
 - Binary Addition
@@ -24,6 +24,3 @@ This Calculator is written in C++ using basic concepts of object oriented progra
 ## Support
 
 For support, email harris20014@gmail.com.
-
-  
-  
