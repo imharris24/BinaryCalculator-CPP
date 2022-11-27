@@ -1,22 +1,17 @@
 #include<iostream>
 #include<string>
 #include<conio.h>
+#include<math.h>
 using namespace std;
 
 class binaryCalculator {
 private:
-	string numberOne, numberTwo, result;
-	char option; 
 	bool isBinary(string number); // function to check whether a number is binary or not
-	string addition(string numberOne, string numberTwo); // function that add two binary numbers and return result
+	string addition(string numberOne, string numberTwo); // function that adds two binary numbers and returns result
+	string twosComplement(string number); // function that returns 2's complement of a binary number
 public:
-	string twosComplement(string number); // function that returns 2's complement of a number
-	binaryCalculator() {
-		numberOne = "\0";
-		numberTwo = "\0";
-		result = "\0";
-		option = '\0';
-	}
+	string subtraction(string numberOne, string numberTwo); // function that subtracts two binary numbers and returns result
+	long long int returnDecimal(string number);
 	void app();
 };
 bool binaryCalculator::isBinary(string number) {
@@ -119,8 +114,45 @@ string binaryCalculator::twosComplement(string number) {
 	complement = addition(number, "1");
 	return complement;
 }
+string binaryCalculator::subtraction(string numberOne, string numberTwo) {
+	string result = "\0";
+	int i = 0, j = 0;
+	for (i = numberOne.length() - 1, j = numberTwo.length() - 1; i >= 0 && j >= 0; i--, j--) {
+		if (numberOne[i] == '0' && numberTwo[j] == '0') {
+			result = '0' + result;
+		}
+		else if (numberOne[i] == '1' && numberTwo[j] == '0') {
+			result = '1' + result;
+		}
+		else if (numberOne[i] == '1' && numberTwo[j] == '1') {
+			result = '0' + result;
+		}
+		else {
+			// carry condition
+		}
+	}
+	return result;
+}
+long long int binaryCalculator::returnDecimal(string number) {
+	long long int decimalNumber = 0;
+	for (int i = number.length() - 1, j = 0; i >= 0; i--, j++) {
+		if (number[i] == '0') {
+			continue;
+		}
+		else {
+			decimalNumber += 1*pow(2, j);
+		}
+	}
+	return decimalNumber;
+}
 void binaryCalculator::app() {
+	string numberOne = "\0", numberTwo = "\0", result = "0";
+	char option = '\0';
 	while (true) {
+		numberOne = "\0";
+		numberTwo = "\0";
+		result = "\0";
+		option = '\0';
 		system("cls");
 		cout << "BINARY CALCULATOR\n";
 		cout << "1. Addition\n";
@@ -158,11 +190,9 @@ void binaryCalculator::app() {
 int main() {
 	binaryCalculator calc;
 	//calc.app();
-
-	cout << calc.twosComplement("0000") << endl;
-	cout << calc.twosComplement("1010") << endl;
-	cout << calc.twosComplement("0101") << endl;
-	cout << calc.twosComplement("1111") << endl;
-	
+	cout << calc.returnDecimal("1111") << endl;
+	cout << calc.returnDecimal("0100") << endl;
+	cout << calc.subtraction("1111", "0100") << endl;
+	cout << calc.returnDecimal(calc.subtraction("1111", "0100")) << endl;
 	return 0;
 }
